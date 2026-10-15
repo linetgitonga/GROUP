@@ -1,0 +1,10 @@
+const XLSX = require('xlsx');
+const path = require('path');
+const wb = XLSX.readFile(path.join(__dirname, '..', 'Class Yearbook Profile and Memories Submission (Responses).xlsx'));
+const ws = wb.Sheets[wb.SheetNames[0]];
+const data = XLSX.utils.sheet_to_json(ws);
+console.log('Sheet names:', wb.SheetNames);
+console.log('Columns:', Object.keys(data[0]));
+console.log('Row count:', data.length);
+console.log('\nFirst 3 rows:');
+data.slice(0, 3).forEach((r, i) => console.log(`\nRow ${i+1}:`, JSON.stringify(r, null, 2)));

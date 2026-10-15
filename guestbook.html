@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <title>Guestbook — CS Class of 2026</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/yearbook.css?v=4" rel="stylesheet">
+</head>
+
+<body>
+    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status"><span class="sr-only">Loading...</span></div>
+    </div>
+
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-lg-5">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+                <h2 class="mb-0 text-primary text-uppercase"><i class="fa-solid fa-graduation-cap me-1"></i>CS 2026</h2>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto p-4 p-lg-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="yearbook.html" class="nav-item nav-link">Yearbook</a>
+                    <a href="people.html" class="nav-item nav-link">Coursemates</a>
+                    <a href="editors-note.html" class="nav-item nav-link">Editor's Note</a>
+                    <a href="class-reps.html" class="nav-item nav-link">Class Reps</a>
+                    <a href="funzone.html" class="nav-item nav-link">Fun Zone</a>
+                    <a href="guestbook.html" class="nav-item nav-link active">Guestbook</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="page-hero">
+        <h1><i class="fa fa-comment-dots me-2"></i>Guestbook</h1>
+        <ul class="breadcrumb-custom">
+            <li><a href="index.html">Home</a></li>
+            <li><span>/</span></li>
+            <li><span>Guestbook</span></li>
+        </ul>
+    </div>
+
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <p style="color: var(--yb-muted); font-size: 0.9rem;"><i class="fa fa-info-circle me-1"></i> Messages are saved locally in your browser. They're visible only to you on this device.</p>
+        </div>
+
+        <div class="guestbook-form wow fadeInUp" data-wow-delay="0.1s">
+            <h4 style="font-family: 'Josefin Sans', sans-serif; font-weight: 700; text-align: center; margin-bottom: 1.5rem;">Leave a Message</h4>
+            <input type="text" id="gb-name" placeholder="Your name" maxlength="100">
+            <textarea id="gb-message" placeholder="Write your message..." rows="4" maxlength="500"></textarea>
+            <button class="btn btn-primary w-100 py-3" id="gb-submit">Post to the Wall <i class="fa fa-paper-plane ms-2"></i></button>
+        </div>
+
+        <div class="sticky-wall" id="sticky-wall">
+            <!-- Populated by JS from localStorage -->
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark text-light footer py-5">
+        <div class="container text-center py-5">
+            <a href="index.html"><h1 class="display-4 mb-3 text-white text-uppercase"><i class="fa-solid fa-graduation-cap me-2"></i>CS 2026</h1></a>
+            <p class="mb-2">Computer Science — Kenyatta University — Class of 2026</p>
+            <p class="text-muted">&copy; 2026 CS Class Yearbook. Made with <i class="fa fa-heart text-primary"></i> by the class.</p>
+        </div>
+    </div>
+
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode"><i class="fa fa-moon" id="theme-icon"></i></button>
+    <a href="#" class="btn btn-outline-primary border-2 btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/yearbook.js?v=4"></script>
+</body>
+
+</html>
