@@ -387,14 +387,22 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: name, message: msg })
-            }).then(function () {
+            }).then(function (r) {
+                if (!r.ok) throw new Error('no api');
                 nameInput.value = '';
                 msgInput.value = '';
                 submit.disabled = false;
                 loadGuestbook();
             }).catch(function () {
+                try {
+                    var entries = JSON.parse(localStorage.getItem('yb-guestbook') || '[]');
+                    entries.unshift({ name: name, message: msg, created_at: new Date().toISOString() });
+                    localStorage.setItem('yb-guestbook', JSON.stringify(entries));
+                } catch (e) {}
+                nameInput.value = '';
+                msgInput.value = '';
                 submit.disabled = false;
-                alert('Could not post — is the server running?');
+                loadGuestbook();
             });
         });
     }
@@ -402,16 +410,34 @@
     function loadGuestbook() {
         var wall = document.getElementById('sticky-wall');
         if (!wall) return;
-        fetch('/api/guestbook').then(function (r) { return r.json(); }).then(function (entries) {
+
+        function renderEntries(entries) {
             wall.innerHTML = entries.map(function (e) {
+                var time = e.created_at || e.time || '';
+                if (time && time.length === 19 && time.indexOf('T') === -1) time += 'Z';
                 return '<div class="sticky-note">' +
                     '<div class="note-author">' + escapeHtml(e.name) + '</div>' +
                     '<div class="note-body">' + escapeHtml(e.message) + '</div>' +
-                    '<div class="note-time">' + new Date(e.created_at + 'Z').toLocaleDateString() + '</div>' +
+                    '<div class="note-time">' + (time ? new Date(time).toLocaleDateString() : '') + '</div>' +
                 '</div>';
             }).join('');
+            if (!entries.length) {
+                wall.innerHTML = '<p style="color:var(--yb-muted);text-align:center;">No messages yet. Be the first to sign!</p>';
+            }
+        }
+
+        fetch('/api/guestbook').then(function (r) {
+            if (!r.ok) throw new Error('no api');
+            return r.json();
+        }).then(function (entries) {
+            renderEntries(entries);
         }).catch(function () {
-            wall.innerHTML = '<p style="color:var(--yb-muted);text-align:center;">Could not load guestbook entries.</p>';
+            try {
+                var entries = JSON.parse(localStorage.getItem('yb-guestbook') || '[]');
+                renderEntries(entries);
+            } catch (e) {
+                renderEntries([]);
+            }
         });
     }
 

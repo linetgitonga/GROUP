@@ -1,5 +1,5 @@
 node_modules/
-yearbook.db
-*.db-journal
-*.db-wal
+# yearbook.db
+# *.db-journal
+# *.db-wal
 .env
