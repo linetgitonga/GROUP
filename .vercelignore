@@ -1,5 +1,5 @@
 node_modules
-server.js
+local-server.js
 scripts
 yearbook.db
 *.db-journal

@@ -7,8 +7,8 @@
   "scripts": {
     "parse": "node scripts/parse-excel.js",
     "build": "node scripts/parse-excel.js",
-    "serve": "node server.js",
-    "start": "node server.js",
+    "serve": "node local-server.js",
+    "start": "node local-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
